@@ -10,8 +10,10 @@ if (( ! $+commands[ssh-agent] )) || [[ "$OSTYPE" == darwin* ]]; then
   return 1
 fi
 
-# Set the default path to the environment file.
-_ssh_agent_env="$HOME/.ssh/environment-$HOST"
+# Set the default path to the environment file if not set by another module.
+if [[ -z "$_ssh_agent_env" ]]; then
+  _ssh_agent_env="$HOME/.ssh/environment-$HOST"
+fi
 
 # Start ssh-agent if not started.
 if [[ ! -S "$SSH_AUTH_SOCK" ]]; then
