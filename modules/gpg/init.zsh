@@ -13,6 +13,7 @@ fi
 # Set the default paths to gpg-agent files.
 _gpg_agent_conf="$HOME/.gnupg/gpg-agent.conf"
 _gpg_agent_info="$HOME/.gpg-agent-info"
+_ssh_agent_env="$HOME/.ssh/environment-$HOST"
 
 # Start gpg-agent if not started.
 if ! ps -U "$USER" -o ucomm | grep -q gpg-agent; then
@@ -28,7 +29,7 @@ export GPG_TTY="$(tty)"
 # Integrate with the SSH module.
 if grep 'enable-ssh-support' "$_gpg_agent_conf" &> /dev/null; then
   # Override the ssh-agent environment file default path.
-  _ssh_agent_env="$_gpg_agent_info"
+  ln -sf "$_gpg_agent_info" "$_ssh_agent_env"
 
   # Load the SSH module for addtional processing.
   pmodload 'ssh'
