@@ -1,3 +1,7 @@
 *.zwc
 *.zwc.old
 modules/*/cache.zsh
+
+.DS_Store
+
+modules/pandoc/README.md.html
