@@ -21,6 +21,13 @@ export EDITOR='nano'
 export VISUAL='nano'
 export PAGER='less'
 
+# use sublime as visual editor
+if [ -f $HOME/dotfiles/bin/subl ]
+then
+	export VISUAL="$HOME/dotfiles/bin/subl"
+fi
+
+
 #
 # Language
 #
